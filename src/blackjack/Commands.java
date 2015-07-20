@@ -25,6 +25,7 @@ public class Commands {
 	}
 	
 	public void doubleDown(){
+<<<<<<< HEAD
 	//TODO: problem with computerintelligence when condition is set - need to fix the instructions in splitArray
 		
 		/*	if (player.getHand().count != 2){
@@ -32,6 +33,12 @@ public class Commands {
 			return;
 		}
 	*/	
+=======
+		if (player.getHand().count != 2){
+			System.out.println("You may only double down on your original hand");
+			return;
+		}
+>>>>>>> origin/master
 		player.decrementChips(player.getHand().getBet());
 		player.getHand().setBet(player.getHand().getBet()*2);
 		Dealer.dealCard(player);
