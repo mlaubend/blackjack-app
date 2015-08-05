@@ -11,8 +11,8 @@ public class Dealer extends Player{
 	public Card topCard = null;
 	
 	public Dealer(String name) {
-		super("Dealer");
-		intelligence = new DealerIntelligence();
+		super("Dealer", "Dealer");
+		intelligence = new DealerIntelligence(this);
 	}
 	
 	public static Dealer getDealer(){

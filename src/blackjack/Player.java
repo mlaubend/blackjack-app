@@ -1,6 +1,5 @@
 package blackjack;
 
-import intelligence.ComputerIntelligence;
 import intelligence.Intelligence;
 import DeckOfCards.Card;
 import DeckOfCards.Hand;
@@ -12,15 +11,17 @@ public class Player {
 	public Player next = null;
 	private Hand hand = null;
 	public Commands commands;
-	public Intelligence intelligence;
+	Intelligence intelligence = null;
+	public String pType;
 	
-	public Player(String name){
+	public Player(String name, String pType){
 		this.name = name;
 		chips = 100;
 		commands = new Commands();
 		commands.player = this;
 		this.hand = new Hand();
-		intelligence = new ComputerIntelligence(this);
+		this.pType = pType;
+	//	intelligence = new ComputerIntelligence(this);
 	}
 	
 	public void peekHand(){

@@ -5,33 +5,47 @@ import intelligence.PlayerIntelligence;
 
 import java.util.Scanner;
 
+import android.blackjack.GUI;
+
 import DeckOfCards.Hand;
 
 public class Game {
 
-	Dealer dealer = Dealer.getDealer();
-	Player first;
-	Winable winable;
+	public Dealer dealer = Dealer.getDealer();
+	public Player first;
+	public Winable winable;
+	GUI view;
+	
+	public Game(GUI view){
+		this.view = view;
+		dealer.commands.view = view;
+	}
 	
 	public void playerName(){
-		System.out.print("Please enter your name: ");
+	/*	System.out.print("Please enter your name: ");
 		Scanner scanner = new Scanner(System.in); //can't close scanner because it will also close System.in stream for other scanners
 		addPlayer("Emily", "Computer");
 		addPlayer(scanner.next(), "Player");
 		printPlayers();
+	*/
+		
+		addPlayer("Emily", "Computer");
+		addPlayer("Mark", "Player");
 	}
+	
 	/**
 	 * add a player to the player list
 	 * @param name the name of the player being added
 	 * @param type the type of player being added e.g. "Player"/"Computer"
 	 */
 	public void addPlayer(String name, String type){
-		Player player = new Player(name);
+		Player player = new Player(name, type);
 		
 		if(type.equals("Player"))
 			player.intelligence = new PlayerIntelligence(player);
 		else if (type.equals("Computer"))
 			player.intelligence = new ComputerIntelligence(player);
+		player.commands.view = view;
 			
 		if (first == null)
 			first = player;
@@ -51,17 +65,18 @@ public class Game {
 	}
 	
 	public void startGame(){
-		while(!anteUp());
+		//while(!anteUp());
 		Dealer.getDealer().deal(first);
-		first.peekHand();
-		Dealer.getDealer().showTopCard();
+	
+		//first.peekHand();
+		//Dealer.getDealer().showTopCard();
 	}
 	
-	public boolean anteUp(){
+	public boolean anteUp(int ante){
 		Player current = first;
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter your ante: ");
-		int ante = scanner.nextInt();
+	//	Scanner scanner = new Scanner(System.in);
+	//	System.out.println("Enter your ante: ");
+	//	int ante = scanner.nextInt();
 		
 		if (!current.enoughChips(ante)){
 			System.out.println(current.name + " chips are: $" + current.getChips());
@@ -84,7 +99,7 @@ public class Game {
 	}
 	
 	public void startIntelligence(){
-		Player player = first;
+		Player player = first.next;
 		
 		while (player != null){
 			player.intelligence.startAI();
@@ -105,7 +120,7 @@ public class Game {
 		Dealer.getDealer().setHand(new Hand());
 		Dealer.checkReshuffle();
 	}
-	
+	/*
 	public static void main(String[] args){
 		Game game = new Game();
 		game.playerName();
@@ -117,5 +132,5 @@ public class Game {
 			game.winable.determineWinner();
 			game.endGame();
 			}
-	}
+	}*/
 }

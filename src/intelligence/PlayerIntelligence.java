@@ -1,9 +1,8 @@
 package intelligence;
 
 import java.util.Scanner;
-
-import DeckOfCards.Hand;
 import blackjack.Player;
+import DeckOfCards.Hand;
 
 public class PlayerIntelligence implements Intelligence{
 	Player player;
@@ -30,8 +29,8 @@ public class PlayerIntelligence implements Intelligence{
 	
 		while (player.getHand() != null){
 			while (player.getHand().inPlay){
-				System.out.println("hit/doubledown/split/stay/odds?");
-				nextMove(scanner.next());
+				//System.out.println("hit/doubledown/split/stay/odds?");
+				//nextMove(scanner.next());
 			}
 			player.setHand(player.getHand().next);
 			
@@ -53,10 +52,10 @@ public class PlayerIntelligence implements Intelligence{
 	public void nextMove(String nextMove){
 		switch (nextMove){
 			case "hit":
-				player.commands.hitMe();
+				player.commands.hitMe(player.pType);
 				break;
 			case "doubledown":
-				player.commands.doubleDown();
+				player.commands.doubleDown(player.pType);
 				break;
 			case "split":
 				player.commands.split();

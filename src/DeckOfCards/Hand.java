@@ -5,7 +5,7 @@ public class Hand {
 	public Hand next = null;
 	public Hand previous = null;
 	public int handValue = 0;
-	public boolean busted = false;
+	public boolean busted = false;	//busted and inplay are the exact same, should delete one
 	public boolean inPlay = true;
 	public boolean isAceValue = false;
 	private int bet = 0;

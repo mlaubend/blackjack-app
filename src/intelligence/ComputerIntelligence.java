@@ -1,8 +1,8 @@
 package intelligence;
 
-import DeckOfCards.Hand;
 import blackjack.Dealer;
 import blackjack.Player;
+import DeckOfCards.Hand;
 
 public class ComputerIntelligence implements Intelligence{
 	Player player;
@@ -15,16 +15,23 @@ public class ComputerIntelligence implements Intelligence{
 	public void startAI() {
 		System.out.println(player.name + "'s turn:");
 		Hand hand = player.getHand();
+	
+		while (!player.commands.playerFinished()){
+			doCommand(index());
+		}
 		
-		while (player.getHand() != null){
+	/*	while (player.getHand() != null){
 			while (player.getHand().inPlay)
 				doCommand(index());
 			player.setHand(player.getHand().next);
 		}
-		
+	*/	
 		while (hand.previous != null)
 			hand = hand.previous;
 		player.setHand(hand);
+	
+		
+	//	while (mustHit());
 	}
 	
 	/*
@@ -87,11 +94,11 @@ public class ComputerIntelligence implements Intelligence{
 		switch (command){
 			case 1:
 				System.out.println(player.name + " hits");
-				player.commands.hitMe();
+				player.commands.hitMe(player.pType);
 				break;
 			case 2:
 				System.out.println(player.name + " doubles down");
-				player.commands.doubleDown();
+				player.commands.doubleDown(player.pType);
 				break;
 			case 3:
 				System.out.println(player.name + " stays");
@@ -115,7 +122,7 @@ public class ComputerIntelligence implements Intelligence{
 		else if (player.getHand().hasAce() && player.getHand().isAceValue && player.getHand().handValue != 21){
 			return softIndex();
 		}
-		else if (player.getHand().topCard.next != null && player.getHand().topCard.name.equals(player.getHand().topCard.next.name))
+		else if (player.getHand().topCard.next != null && player.getHand().topCard.name.equals(player.getHand().topCard.next.name) && player.getHand().count == 2)
 				return splitIndex();
 		else return hardIndex();
 	}
@@ -143,6 +150,17 @@ public class ComputerIntelligence implements Intelligence{
 		return splitArray[row][column];
 	}
 
+	public boolean mustHit(){
+		if (player.getHand().handValue <= 16){
+			System.out.println("Player hits");
+			player.commands.hitMe(player.pType);
+		}
+		if (player.getHand().handValue <= 16){
+			return true;
+		}
+		return false;
+	}
+	
 	public void playOdds(){
 		int handValue = player.getHand().handValue;
 		

@@ -1,8 +1,15 @@
 package intelligence;
 
 import blackjack.Dealer;
+import blackjack.Player;
 
 public class DealerIntelligence implements Intelligence{
+	Player player;
+	
+	public DealerIntelligence(Player player){
+		this.player = player;
+	}
+	
 	@Override
 	public void startAI() {
 		while (mustHit());		
@@ -15,7 +22,7 @@ public class DealerIntelligence implements Intelligence{
 	public boolean mustHit(){
 		if (Dealer.getDealer().getHand().handValue <= 16){
 			System.out.println("Dealer hits");
-			Dealer.getDealer().commands.hitMe();
+			Dealer.getDealer().commands.hitMe(player.pType);
 		}
 		if (Dealer.getDealer().getHand().handValue <= 16){
 			return true;

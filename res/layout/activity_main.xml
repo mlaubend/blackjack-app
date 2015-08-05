@@ -1,16 +1,204 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:baselineAligned="false"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="android.blackjack.GUI" >
+<!--android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="android.blackjack.MainActivity" >
+    android:paddingTop="@dimen/activity_vertical_margin" -->
+    
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+    <RelativeLayout
+        android:id="@+id/playerhand"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="40"
+        android:background="@drawable/blackjacktable" >
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="50dp"
+            android:src="@drawable/acespade"
+            android:contentDescription="players first card" />
+
+        <ImageView
+            android:id="@+id/card1"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_alignStart="@id/imageView1"
+            android:layout_alignLeft="@id/imageView1"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="110dp"
+            android:layout_marginLeft="20dp"
+            android:rotation="33"
+            android:src="@drawable/acespade" >            
+        </ImageView>
+                 
+        <ImageView 
+           android:id="@+id/dealercard1"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="50dp"
+ 	       android:layout_marginStart="14dp"
+   	       android:layout_marginLeft="14dp"
+           android:layout_marginBottom="120dp"
+           android:layout_above="@+id/imageView1" 
+           android:layout_centerHorizontal="true"
+           android:rotation="180"
+           android:src="@drawable/queenspade" >
+        </ImageView>
+ 
+        <TextView
+            android:id="@+id/playerhandvalue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="24dp"
+            android:text="Hand Value: "
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/playerChipCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignEnd="@id/playerhandvalue"
+            android:layout_alignRight="@+id/playerhandvalue"
+            android:text="Chip Count: "
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/computerhandvalue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@+id/imageView1"
+            android:text="Hand Value: "
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/dealerhandvalue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/imageView1"
+            android:layout_marginBottom="180dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginRight="100dp"
+            android:text="hhhh"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    </RelativeLayout>
+    
+    <TableLayout
+        android:id="@+id/controlslayout" 
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="60"
+        android:background="@color/black">
+        
+        <TableRow
+            android:id="@+id/row1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            
+	        <Button
+	            android:id="@+id/split"
+	            android:layout_marginLeft="10dp"
+	            android:layout_marginRight="10dp"
+	            android:layout_marginTop="10dp"
+	            android:layout_width="0dp"
+	            android:layout_weight="1"
+	            android:layout_height="40dp"
+	            android:background="@color/white"
+	            android:text="split" >
+	        </Button>
+	        
+	        <Button
+	            android:id="@+id/doubledown"
+	            android:layout_marginLeft="10dp"
+	            android:layout_marginRight="10dp"
+	            android:layout_marginTop="10dp"
+	            android:layout_width="0dp"
+	            android:layout_height="40dp"
+	            android:layout_weight="1"
+	            android:background="@color/white"
+	            android:text="DD" >
+	        </Button>
+	        
+	        <Button
+	            android:id="@+id/odds"
+	            android:layout_marginLeft="10dp"
+	            android:layout_marginRight="10dp"
+	            android:layout_marginTop="10dp"
+	            android:layout_width="0dp"
+	            android:layout_height="40dp"
+	            android:layout_weight="1"
+	            android:background="@color/white"
+	            android:text="Odds" >
+	        </Button>
+	    </TableRow>
+	    
+        <TableRow>
+            
+        	<Button
+	            android:id="@+id/hit"
+	            android:layout_marginLeft="10dp"
+	            android:layout_marginRight="10dp"
+	            android:layout_marginTop="10dp"
+	            android:layout_width="0dp"
+	            android:layout_weight="1"
+	            android:layout_height="100dp"
+	            android:background="@color/white"
+	            android:text="Hit" >
+	        </Button>
+	        
+	        <Button
+	            android:id="@+id/stay"
+	            android:layout_marginLeft="10dp"
+	            android:layout_marginRight="10dp"
+	            android:layout_marginTop="10dp"
+	            android:layout_width="0dp"
+	            android:layout_weight="1"
+	            android:layout_height="100dp"
+	            android:background="@color/white"
+	            android:text="Stay" >
+	        </Button>
+                
+        </TableRow>
+        
+        <TableRow>
+        
+        <Button
+            android:id="@+id/nexthand"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:text="Next Hand" >
+            
+        </Button>
+        </TableRow>
+   
+        
+	</TableLayout>
+
+</LinearLayout>
+
